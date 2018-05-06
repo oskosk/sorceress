@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name: Jeremy
- * Description: Track Activity on the Jetpack Repo and keep it tidy
+ * Plugin Name: Sorceress
+ * Description: Track Jetpack Memory Consumption
  * Version: 1.0.0
  * Author: Osk
  */
@@ -10,6 +10,7 @@
 $sorceress_trackers = [];
 
 require 'lib/RationalOptionPages.php';
+require 'debug.php';
 
 define( 'SORCERESS_FILTER', 10 * 1024 );
 define( 'SORCERESS_DEBUG', false );
