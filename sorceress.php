@@ -48,8 +48,8 @@ function sorceress_all_action( $tag ) {
 		'start' => sorceress_get_memory(),
 		'end' => 0,
 		'peak_start' => sorceress_get_peak_memory(),
-		'peak_end' => 'N/A',
-		'peak_diff' => 'N/A',
+		'peak_end' => 0,
+		'peak_diff' => 0,
 		'callbacks' => join( ', ', $callbacks ),
 	];
 	add_filter( $tag, 'sorceress_tracker_end' , 1000000 );
@@ -172,6 +172,8 @@ function sorceress_parse_filter_callbacks( $filter ) {
 			foreach( $priority as $callback ) {
 				if (  gettype( $callback['function'] ) === 'string' ) {
 					$callbacks[] = $callback['function'];
+				} else if ( ! is_array( $callback['function'] ) ) {
+						$callbacks[] = 'Closure';
 				} else if ( gettype( $callback['function'][0] ) === 'object' ) {
 					$callbacks[] =  get_class( $callback['function'][0] ) . '->' . $callback['function'][1];
 				} else {
